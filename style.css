@@ -46,7 +46,9 @@ header {
     transition: all .2s;  
 }
 
-#input-and-button button:hover {
+
+
+ #input-and-button button:active {
     cursor: pointer;
     background-color: rgb(169, 169, 169);
 }
@@ -98,4 +100,16 @@ header button {
 .task p{
     display: inline;
     margin-left: 5px;
+}
+
+
+@media (min-width: 576px) {
+    #input-and-button button:hover {
+        cursor: pointer;
+        background-color: rgb(169, 169, 169);
+        
+    }
+
+
+    
 }
