@@ -1,0 +1,101 @@
+html {
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+*, *::after, *::before {
+    box-sizing: inherit;
+}
+
+body {
+    padding: 20px;
+}
+
+h1 {
+    margin: 0;
+    margin-bottom:10px;
+    padding-top: 15px;
+}
+
+main {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+header {
+    position: relative;
+    text-align: center;
+    background-color: #2f4f4f;
+    color: white;
+    width: 100%;
+    height: 120px;
+}
+
+#input-and-button {
+    display: flex;
+    margin: 0 auto;
+    width: 90%;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#input-and-button button {
+    transition: all .2s;  
+}
+
+#input-and-button button:hover {
+    cursor: pointer;
+    background-color: rgb(169, 169, 169);
+}
+
+#input-field {
+    flex-grow: 1;
+    padding: 5px;
+    outline: none;
+    border: none;
+}
+
+header button {
+    margin: 0;
+    border: none;   
+    padding: 8px;
+}
+
+#tasks-container {
+    height: 70vh;
+    overflow: auto;
+}
+
+.task {
+    position: relative;
+    padding: 15px;
+    margin-bottom: 5px;
+    background-color: white;
+    transition: all .2s;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.task:hover {
+    background-color: rgb(225, 243, 255);
+}
+
+.task button {
+    margin-left: 10px;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    right: 10px;
+}
+
+.task button:hover {
+    cursor: pointer;
+}
+
+.task p{
+    display: inline;
+    margin-left: 5px;
+}
