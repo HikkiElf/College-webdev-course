@@ -33,7 +33,11 @@ function addTask() {
     const inputField = document.querySelector('#input-field');
     let taskText = inputField.value;
     if (taskText === '' || taskText.match(/^ +$/g)) return;
-    console.log(taskText);
+    let isAlreadyExist = false;
+    document.querySelectorAll(`p`).forEach(item => {
+        if (item.textContent === taskText) isAlreadyExist = true;
+    });
+    if (isAlreadyExist) {alert("Task already exist!"); return}
     const tasksContainer = document.querySelector('#tasks-container');
     const divTask = document.createElement('div');
     divTask.className = 'task';
