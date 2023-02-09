@@ -12,9 +12,10 @@ function loadTasks() {
         divTask.className = 'task';
         const inputCheckbox = document.createElement('input');
         inputCheckbox.type = 'checkbox';
+        inputCheckbox.setAttribute('onclick', 'taskCompleted(this)');
         inputCheckbox.checked = task.completed;
         const innerTaskText = document.createElement('p');
-        innerTaskText.textContent = task.task;
+        innerTaskText.textContent = task.text;
         const crossBtn = document.createElement('button');
         crossBtn.textContent = '✖';
         crossBtn.setAttribute('onclick', 'removeTask(this)');
@@ -38,6 +39,7 @@ function addTask() {
     divTask.className = 'task';
     const inputCheckbox = document.createElement('input');
     inputCheckbox.type = 'checkbox';
+    inputCheckbox.setAttribute('onclick', 'taskCompleted(this)');
     const innerTaskText = document.createElement('p');
     innerTaskText.textContent = taskText;
     const crossBtn = document.createElement('button');
@@ -49,14 +51,26 @@ function addTask() {
     inputField.value = '';
 
 
-    localStorage.setItem('tasks', JSON.stringify([...JSON.parse(localStorage.getItem("tasks") || "[]"), { task: taskText, completed: false}]));
+    localStorage.setItem('tasks', JSON.stringify([...JSON.parse(localStorage.getItem("tasks") || "[]"), { text : taskText, completed: false}]));
+}
+
+function taskCompleted(event) {
+    let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
+    tasks.forEach(task =>{
+        if (task.text === event.nextElementSibling.textContent) {
+            task.completed = !task.completed;
+        }
+    });
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+
 }
 
 
 function removeTask(event) {
     let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
     tasks.forEach(task => {
-        if (task.task === event.parentNode.children[1].textContent) {
+        if (task.text === event.parentNode.children[1].textContent) {
             tasks.splice(tasks.indexOf(task), 1);
         }
     });
