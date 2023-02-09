@@ -17,7 +17,7 @@ function loadTasks() {
         innerTaskText.textContent = task.task;
         const crossBtn = document.createElement('button');
         crossBtn.textContent = '✖';
-        crossBtn.setAttribute('onclick', 'deleteTask()');
+        crossBtn.setAttribute('onclick', 'removeTask(this)');
         crossBtn.className = 'remove-task'
         divTask.append(inputCheckbox, innerTaskText, crossBtn);
         tasksContainer.appendChild(divTask);
@@ -42,7 +42,7 @@ function addTask() {
     innerTaskText.textContent = taskText;
     const crossBtn = document.createElement('button');
     crossBtn.textContent = '✖';
-    crossBtn.setAttribute('onclick', 'deleteTask()');
+    crossBtn.setAttribute('onclick', 'removeTask(this)');
     crossBtn.className = 'remove-task'
     divTask.append(inputCheckbox, innerTaskText, crossBtn);
     tasksContainer.appendChild(divTask);
@@ -50,6 +50,18 @@ function addTask() {
 
 
     localStorage.setItem('tasks', JSON.stringify([...JSON.parse(localStorage.getItem("tasks") || "[]"), { task: taskText, completed: false}]));
+}
+
+
+function removeTask(event) {
+    let tasks = Array.from(JSON.parse(localStorage.getItem("tasks")));
+    tasks.forEach(task => {
+        if (task.task === event.parentNode.children[1].textContent) {
+            tasks.splice(tasks.indexOf(task), 1);
+        }
+    });
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    event.parentNode.remove()
 }
 
 
@@ -62,19 +74,3 @@ inputField.addEventListener("keypress", function(event) {
         document.querySelector('button').click();
     }
 });
-
-
-function deleteTask() {
-    
-    for (let element of event.composedPath()) {
-        if (element.matches && element.matches("button.remove-task")) {
-
-            console.log(element, 'is the button clicked');
-            console.log(element.parentNode, 'is the parent element');
-            element.parentNode.remove();
-
-        }
-    }
-    
-    
-}
